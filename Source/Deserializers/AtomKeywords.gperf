@@ -1,0 +1,40 @@
+%readonly-tables
+%enum
+%language=ANSI-C
+%define lookup-function-name atom_in_word_set
+%struct-type
+struct element { char *name; int code; };
+%%
+atom, 1
+entry, 2
+title, 3
+subtitle, 4
+link, 5
+updated, 6
+author, 7
+id, 8
+summary, 9
+%%
+
+#include <libxml/xmlreader.h>
+
+typedef enum {
+	AtomElementNameCode_Atom = 1,
+	AtomElementNameCode_Entry = 2,
+	AtomElementNameCode_Title = 3,
+	AtomElementNameCode_Subtitle = 4,
+	AtomElementNameCode_Link = 5,
+	AtomElementNameCode_Updated = 6,
+	AtomElementNameCode_Author = 7,
+	AtomElementNameCode_ID = 8,
+	AtomElementNameCode_Summary = 9,
+} EAtomElementNameCode;
+
+EAtomElementNameCode CodeForAtomElementName(const xmlChar *inElementName)
+{
+const struct element *theElement = atom_in_word_set((const char *)inElementName, xmlStrlen(inElementName));
+if (!theElement)
+	return(0);
+else
+	return(theElement->code);
+}

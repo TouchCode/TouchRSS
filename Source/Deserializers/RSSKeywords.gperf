@@ -1,0 +1,33 @@
+%readonly-tables
+%enum
+%language=ANSI-C
+%struct-type
+struct element { char *name; int code; };
+%%
+rss, 1
+channel, 2
+item, 3
+title, 4,
+link, 5
+description, 6,
+language, 7,
+pubDate, 8,
+lastBuildDate, 9,
+docs, 10,
+generator, 11,
+managingEditor, 12,
+ttl, 13,
+guid, 14,
+%%
+
+#include <libxml/xmlreader.h>
+#include "RSSKeywords.h"
+
+ERSSElementNameCode CodeForElementName(const xmlChar *inElementName)
+{
+const struct element *theElement = in_word_set((const char *)inElementName, xmlStrlen(inElementName));
+if (!theElement)
+	return(0);
+else
+	return(theElement->code);
+}

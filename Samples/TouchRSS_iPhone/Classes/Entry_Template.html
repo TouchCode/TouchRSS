@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>${entry.title}</title>
+		<meta name="generator" content="BBEdit 9.3">
+		<meta name="viewport" content="width=device-width" />
+	</head>
+	<body>
+		<span>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>#</td>
+					<td>${controller.currentEntryIndex} (+ 1) / ${controller.countOfEntries}</td>
+				</tr>
+				<tr>
+					<td>Title</td>
+					<td>${entry.title}</td>
+				</tr>
+				<tr>
+					<td>Subtitle</td>
+					<td>${entry.subtitle}</td>
+				</tr>
+				<tr>
+					<td>Updated</td>
+					<td>${entry.updated}</td>
+				</tr>
+				<tr>
+					<td>Link</td>
+					<td>${entry.link}</td>
+				</tr>
+				<tr>
+					<td>Identifier</td>
+					<td>${entry.identifier}</td>
+				</tr>
+			</table>
+		</span>
+		<span>
+		${entry.content}
+		</span>
+
+
+	</body>
+</html>
