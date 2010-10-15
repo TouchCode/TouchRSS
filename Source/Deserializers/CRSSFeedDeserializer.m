@@ -267,10 +267,7 @@ while (theCurrentNode != NULL && self.error == NULL)
 					}
 				else if (strcmp((const char *)theElementName, "thumbnail") == 0)
 					{
-					NSLog(@"THUMBNAIL!");
-					
 					CXMLElement *theElement = [CXMLElement nodeWithLibXMLNode:theCurrentNode freeOnDealloc:NO];
-					NSLog(@"%@", theElement);
 					NSString *theThumbnailURLString = [[theElement attributeForName:@"url"] stringValue];
 					[inItem setObject:theThumbnailURLString forKey:@"thumbnailURL"];					
 					}

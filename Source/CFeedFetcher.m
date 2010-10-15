@@ -122,7 +122,6 @@ NSURL *theURL = [NSURL URLWithString:inFeed.URL];
 
 if ([self.currentURLs containsObject:theURL] == YES)
 	{
-	NSLog(@"Already fetching %@, ignoring this request to update.", theURL);
 	return(NO);
 	}
 
