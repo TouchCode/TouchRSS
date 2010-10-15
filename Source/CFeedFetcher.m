@@ -150,6 +150,8 @@ return(YES);
 {
 NSError *theError = NULL;
 CFeed *theFeed = NULL;
+NSMutableSet *oldEntries = NULL;
+int entryCount = 0;
 
 CManagedURLConnection *theConnection = (CManagedURLConnection *)inTarget;
 [self.currentURLs removeObject:theConnection.request.URL];
@@ -185,6 +187,7 @@ for (id theDictionary in theDeserializer)
 				}
 
 			theFeed.lastChecked = [NSDate date];
+			oldEntries = [[theFeed.entries mutableCopy] autorelease];
 			}
 			break;
 		case FeedDictinaryType_Entry:
@@ -207,10 +210,18 @@ for (id theDictionary in theDeserializer)
 				[NSException raise:NSGenericException format:@"Update Object failed: %@", theError];
 				}
 
+			theEntry.fetchOrder = entryCount++;
 			theEntry.feed = theFeed;
+			
+			[oldEntries removeObject:theEntry];
 			}
 			break;
 		}
+	}
+
+for (CFeedEntry *entry in oldEntries)
+	{
+	[self.feedStore.managedObjectContext deleteObject:entry];
 	}
 
 if (theDeserializer.error != NULL)

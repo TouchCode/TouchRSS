@@ -101,6 +101,34 @@ return(theResult);
 
 @dynamic link;
 
+@dynamic fetchOrder;
+- (int)fetchOrder
+{
+return([[self fetchOrderValue] intValue]);
+}
+
+- (void)setFetchOrder:(int)inFetchOrder
+{
+[self setFetchOrderValue:[NSNumber numberWithInt:inFetchOrder]];
+}
+
+@dynamic fetchOrderValue;
+
+- (NSNumber *)fetchOrderValue
+{
+[self willAccessValueForKey:@"fetchOrder"];
+NSNumber *theResult = [self primitiveValueForKey:@"fetchOrder"];
+[self didAccessValueForKey:@"fetchOrder"];
+return(theResult);
+}
+
+- (void)setFetchOrderValue:(NSNumber *)inFetchOrder
+{
+[self willChangeValueForKey:@"fetchOrder"];
+[self setPrimitiveValue:inFetchOrder forKey:@"fetchOrder"];
+[self didChangeValueForKey:@"fetchOrder"];
+}
+
 #pragma mark end emogenerator accessors
 
 @end

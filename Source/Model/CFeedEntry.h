@@ -63,6 +63,8 @@
 @property (readwrite, retain) NSString *title;
 @property (readwrite, retain) NSString *identifier;
 @property (readwrite, retain) NSString *link;
+@property (readwrite, assign) int fetchOrder;
+@property (readwrite, retain) NSNumber *fetchOrderValue;
 
 // Relationships
 @property (readwrite, retain) CFeed *feed;
