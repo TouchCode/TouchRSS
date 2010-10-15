@@ -282,12 +282,12 @@ while (theCurrentNode != NULL && self.error == NULL)
 					NSMutableDictionary *theDictionary = [inItem objectForKey:@"extraXML"];
 					if (theDictionary == NULL)
 						{
-						theDictionary = [NSMutableDictionary dictionaryWithObject:theElement forKey:theElement.name];
+						theDictionary = [NSMutableDictionary dictionaryWithObject:theElement forKey:theElement.localName];
 						[inItem setObject:theDictionary forKey:@"extraXML"];
 						}
 					else
 						{
-						[theDictionary setObject:theElement forKey:theElement.name];
+						[theDictionary setObject:theElement forKey:theElement.localName];
 						}
 					}
 				}
