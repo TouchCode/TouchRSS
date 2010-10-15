@@ -115,13 +115,17 @@ if (theLastChecked != NULL)
 
 	NSTimeInterval theInterval = [theDate timeIntervalSinceDate:theLastChecked];
 	if (theInterval <= self.fetchInterval)
+		{
+		[inCompletionTicket didCancelForTarget:self];
 		return(NO);
+		}
 	}
 
 NSURL *theURL = [NSURL URLWithString:inFeed.URL];
 
 if ([self.currentURLs containsObject:theURL] == YES)
 	{
+	[inCompletionTicket didCancelForTarget:self];
 	return(NO);
 	}
 
@@ -258,6 +262,8 @@ if (inCompletionTicket.subTicket)
 
 - (void)completionTicket:(CCompletionTicket *)inCompletionTicket didCancelForTarget:(id)inTarget
 {
+if (inCompletionTicket.subTicket)
+	[inCompletionTicket.subTicket didCancelForTarget:inTarget];
 }
 
 @end
