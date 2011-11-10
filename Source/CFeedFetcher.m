@@ -231,7 +231,7 @@ if (theDeserializer.error != NULL)
 	{
 	NSLog(@"CFeedStore got an error: %@", theDeserializer.error);
 
-	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFail:)])
+	if (self.delegate && [self.delegate respondsToSelector:@selector(feedFetcher:didFailFetchingFeed:withError:)])
 		[self.delegate feedFetcher:self didFailFetchingFeed:theFeed withError:theDeserializer.error];
 
 	if (inCompletionTicket.subTicket)
